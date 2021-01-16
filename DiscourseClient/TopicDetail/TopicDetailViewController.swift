@@ -22,6 +22,12 @@ class TopicDetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    lazy var labelTopicNumberPost: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     lazy var topicIDStackView: UIStackView = {
         let labelTopicIDTitle = UILabel()
@@ -38,10 +44,22 @@ class TopicDetailViewController: UIViewController {
 
     lazy var topicNameStackView: UIStackView = {
         let labelTopicTitleTitle = UILabel()
-        labelTopicTitleTitle.text = NSLocalizedString("Topic name: ", comment: "")
+        labelTopicTitleTitle.text = NSLocalizedString("Topic titulo: ", comment: "")
         labelTopicTitleTitle.translatesAutoresizingMaskIntoConstraints = false
 
         let topicNameStackView = UIStackView(arrangedSubviews: [labelTopicTitleTitle, labelTopicTitle])
+        topicNameStackView.translatesAutoresizingMaskIntoConstraints = false
+        topicNameStackView.axis = .horizontal
+
+        return topicNameStackView
+    }()
+    
+    lazy var topicNumberPostStackView: UIStackView = {
+        let labelTopicTitleTitle = UILabel()
+        labelTopicTitleTitle.text = NSLocalizedString("Numero post: ", comment: "")
+        labelTopicTitleTitle.translatesAutoresizingMaskIntoConstraints = false
+
+        let topicNameStackView = UIStackView(arrangedSubviews: [labelTopicTitleTitle, labelTopicNumberPost])
         topicNameStackView.translatesAutoresizingMaskIntoConstraints = false
         topicNameStackView.axis = .horizontal
 
@@ -93,12 +111,23 @@ class TopicDetailViewController: UIViewController {
             topicNameStackView.topAnchor.constraint(equalTo: topicIDStackView.bottomAnchor, constant: 8)
         ])
         
+        
+        
+        view.addSubview(topicNumberPostStackView)
+        NSLayoutConstraint.activate([
+            topicNumberPostStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            topicNumberPostStackView.topAnchor.constraint(equalTo: topicNameStackView.bottomAnchor, constant: 8)
+        ])
+        
+        
+        
         view.addSubview(deleteButton)
         NSLayoutConstraint.activate([
             deleteButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
             deleteButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             deleteButton.topAnchor.constraint(equalTo: labelTopicTitle.bottomAnchor, constant: 10)
         ])
+        
         
         view.addSubview(progress)
         NSLayoutConstraint.activate([
@@ -134,6 +163,7 @@ class TopicDetailViewController: UIViewController {
     fileprivate func updateUI() {
         labelTopicID.text = viewModel.labelTopicIDText
         labelTopicTitle.text = viewModel.labelTopicNameText
+        labelTopicNumberPost.text = viewModel.laberTopicNumberPostText
     }
     
     fileprivate func showButton() {

@@ -26,6 +26,7 @@ protocol TopicDetailViewDelegate: class {
 class TopicDetailViewModel {
     var labelTopicIDText: String?
     var labelTopicNameText: String?
+    var laberTopicNumberPostText: String?
 
     weak var viewDelegate: TopicDetailViewDelegate?
     weak var coordinatorDelegate: TopicDetailCoordinatorDelegate?
@@ -45,6 +46,7 @@ class TopicDetailViewModel {
                     self?.viewDelegate?.hidenProgress()
                     self?.labelTopicIDText = String(topicResponse?.id ?? 0)
                     self?.labelTopicNameText = topicResponse?.title
+                    self?.laberTopicNumberPostText = String(topicResponse?.postsCount ?? 0) 
                     self?.viewDelegate?.topicDetailFetched()
                     guard let _ = topicResponse?.details?.canEdit else { return }
                     self?.viewDelegate?.showButtonDeleteTopic()
