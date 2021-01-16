@@ -13,6 +13,7 @@ class UserCell: UITableViewCell {
         didSet {
             guard let viewModel = viewModel else { return }
             textLabel?.text = viewModel.user?.username
+            imageView?.image = UIImage(named: "no-image")
             viewModel.user?.avatarTemplate?.createUrlImage(size: "100", comletion: { url in
                 imageView?.imageFromURL(url: url)
             })

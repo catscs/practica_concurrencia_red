@@ -74,10 +74,10 @@ extension APIRequest {
         // Aquí vamos definiendo las cabeceras de nuestra petición
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         // API-KEY: 699667f923e65fac39b632b0d9b2db0d9ee40f9da15480ad5a4bcb3c1b095b7a. Necesario para que el servidor nos reconozca
-        request.addValue("699667f923e65fac39b632b0d9b2db0d9ee40f9da15480ad5a4bcb3c1b095b7a", forHTTPHeaderField: "Api-Key")
+        request.addValue("", forHTTPHeaderField: "")
         // API-Username, necesario para que el servidor nos reconozca
         // Para la practica, cambiar el usuario nach por el que usasteis para registraros
-        request.addValue("lujan", forHTTPHeaderField: "Api-Username")
+        request.addValue("", forHTTPHeaderField: "")
         
         return request
     }
