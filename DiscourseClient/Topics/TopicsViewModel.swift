@@ -76,10 +76,8 @@ class TopicsViewModel {
                 case .success(let latestTopicResponse):
                     self?.viewDelegate?.hidenProgress()
                     guard let topics = latestTopicResponse?.topicList.topics else { return }
-                    let topicsOpen = topics.filter { topic -> Bool in
-                        return !topic.closed
-                    }
-                    self?.topicViewModels = topicsOpen.map({ topic -> TopicCellViewModel in
+                    self?.topicViewModels = topics.compactMap({ topic -> TopicCellViewModel? in
+                        if topic.closed { return nil }
                         return TopicCellViewModel(topic: topic)
                     })
                     self?.viewDelegate?.topicsFetched()
